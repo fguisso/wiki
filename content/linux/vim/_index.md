@@ -1,0 +1,4 @@
+---
+title: VIM
+type: docs
+---
