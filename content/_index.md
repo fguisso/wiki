@@ -18,6 +18,8 @@ Aqui você encontra conteúdos rápidos e práticos. Se curtir algo mais detalha
 {{< cards >}}
   {{< card link="https://devsec.guisso.dev" title="Livro" icon="book-open" >}}
   {{< card link="https://guisso.dev" title="Blog" icon="user" >}}
-  {{< card link="linux" title="linux" icon="support" >}}
+  {{< card link="linux" title="linux" icon="terminal" >}}
+  {{< card link="/linux/homelab" title="homelab" icon="home" >}}
+  {{< card link="blockchain" title="blockchain" icon="key" >}}
 {{< /cards >}}
 

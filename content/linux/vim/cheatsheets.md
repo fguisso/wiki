@@ -3,7 +3,7 @@ type: docs
 title: VIM cheatsheets
 ---
 
-## 1. Movimentação no Arquivo
+## Movimentação no Arquivo
 
 - **`h`**  
   Move o cursor para a esquerda.
@@ -27,10 +27,22 @@ title: VIM cheatsheets
   Move o cursor para o início da linha.
 
 
-## 2. Modo Insert e Edição de Texto
+## Modo Insert e Edição de Texto
 
 - **`A`**  
   Vai para o fim da linha e entra no modo Insert.
+
+- **`cl`**
+  - c: change, alteração.
+  - l: right.
+  Alteração a direita do cursor. Este comando é equivalente ao `s` no vim.
+
+- **`ciw`**
+  - c: change, alteração.
+  - w: world.
+  Alteração da palavra e abre o modo Insert.
+
+<script src="https://asciinema.org/a/BAu8W00QriAID9gvsbE9K3ZrV.js" id="asciicast-BAu8W00QriAID9gvsbE9K3ZrV" async="true"></script> 
 
 - **`"+y`**  
   Copia o conteúdo selecionado para o clipboard do sistema.
@@ -40,8 +52,9 @@ title: VIM cheatsheets
   - **`g`**: Substitui todas as ocorrências em cada linha (global).  
   - **`c`**: Solicita confirmação para cada substituição.
 
+<script src="https://asciinema.org/a/0HRGw4n6tHFKo4mnD8PepdmeP.js" id="asciicast-0HRGw4n6tHFKo4mnD8PepdmeP" async="true"></script>
 
-## 3. Salvando e Saindo
+## Salvando e Saindo
 
 - **`:wqa`**  
   - **`w`**: Write (salvar).  
@@ -53,7 +66,7 @@ title: VIM cheatsheets
   Sai do nVim sem salvar as alterações.
 
 
-## 4. Deletar Texto
+## Deletar Texto
 
 - **`x`**  
   Deleta o caractere sob o cursor.
@@ -71,7 +84,7 @@ title: VIM cheatsheets
   Transpõe (troca) os dois caracteres: o de onde o cursor está e o seguinte.
 
 
-## 5. Indentação
+## Indentação
 
 - **`>`**  
   Indenta o texto selecionado (aumenta o recuo).
@@ -83,7 +96,7 @@ title: VIM cheatsheets
   Tenta indentar a linha atual automaticamente.
 
 
-## 6. Seleção de Texto
+## Seleção de Texto
 
 - **`ggVG`**  
   Seleciona todo o conteúdo do arquivo:  
@@ -92,7 +105,7 @@ title: VIM cheatsheets
   - **`G`**: Vai para o fim do arquivo, selecionando tudo.
 
 
-## 7. Conversão de Texto
+## Conversão de Texto
 
 - **`U`**  
   Converte o texto selecionado para **maiúsculas**.
@@ -101,7 +114,7 @@ title: VIM cheatsheets
   Converte o texto selecionado para **minúsculas**.
 
 
-## 8. Macros
+## Macros
 
 - **`qX`**  
   Inicia a gravação de uma macro, onde `X` é a tecla à qual a macro será atribuída.
@@ -116,7 +129,7 @@ title: VIM cheatsheets
   Repete a última macro executada.
 
 
-## 9. Navegação em Telas Divididas (Splits)
+## Navegação em Telas Divididas (Splits)
 
 No Vim (incluindo nVim), para navegar entre splits, utilize:
 
@@ -133,7 +146,7 @@ No Vim (incluindo nVim), para navegar entre splits, utilize:
   Move para a tela à direita.
 
 
-## 10. Operações Adicionais
+## Operações Adicionais
 
 - **`y p`**  
   - **`y`**: Yank (copiar).  
@@ -144,7 +157,7 @@ No Vim (incluindo nVim), para navegar entre splits, utilize:
   Apaga o conteúdo entre aspas e entra no modo Insert para substituir o texto.
 
 
-## 11. Abrir Arquivos em Splits
+## Abrir Arquivos em Splits
 
 - **`:vsp nome_do_arquivo`**  
   Abre um novo arquivo em uma divisão vertical.
@@ -153,7 +166,7 @@ No Vim (incluindo nVim), para navegar entre splits, utilize:
   Abre um novo arquivo em uma divisão horizontal.
 
 
-## 12. Outras Operações
+## Outras Operações
 
 - **`u`**  
   Desfaz a última alteração (undo).
