@@ -3,30 +3,6 @@ type: docs
 title: VIM cheatsheets
 ---
 
-## Movimentação no Arquivo
-
-- **`h`**  
-  Move o cursor para a esquerda.
-
-- **`j`**  
-  Move o cursor para baixo.
-
-- **`k`**  
-  Move o cursor para cima.
-
-- **`l`**  
-  Move o cursor para a direita.
-
-- **`gg`**  
-  Leva o cursor para o início do arquivo (topo).
-
-- **`G`**  
-  Move o cursor para o fim do arquivo.
-
-- **`0`**  
-  Move o cursor para o início da linha.
-
-
 ## Modo Insert e Edição de Texto
 
 - **`A`**  
@@ -105,7 +81,7 @@ title: VIM cheatsheets
   - **`G`**: Vai para o fim do arquivo, selecionando tudo.
 
 
-## Conversão de Texto
+## Conversão de Texto - Capitaliazão
 
 - **`U`**  
   Converte o texto selecionado para **maiúsculas**.
@@ -113,6 +89,11 @@ title: VIM cheatsheets
 - **`u`**  
   Converte o texto selecionado para **minúsculas**.
 
+- `guw`
+  Converte a próxima palavra para minúscula.
+
+- `gUw`
+  Converte a próxima palavra para minúscula.
 
 ## Macros
 
