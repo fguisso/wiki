@@ -3,6 +3,36 @@ title: Comandos
 type: docs
 ---
 
+### Listar portas
+
+1. **`ss -l`**  
+   O comando `ss -l` lista todas as portas que estão **escutando** (listening) no sistema. Isso é útil para ver quais serviços estão esperando conexões de rede.
+
+2. **`lsof -i -P`**  
+   O comando `lsof -i -P` mostra quais **processos** estão usando conexões de rede ou portas abertas. Ele exibe qual programa está associado a qual porta/IP.  
+   - A opção `-P` impede que o `lsof` converta números de portas para nomes (por exemplo, `80` em vez de `http`).
+
+---
+
+### Procurando o arquivo em todo o sistema:
+
+Use o comando abaixo para procurar o arquivo em qualquer diretório:
+
+```bash
+find / -type f -name "server.env"
+```
+
+Explicação:
+- `/` → Começa a busca desde a raiz do sistema.
+- `-type f` → Busca apenas arquivos (ignora diretórios).
+- `-name "server.env"` → Procura pelo nome exato do arquivo.
+
+Se quiser buscar por um nome parecido, use `-iname` (ignora maiúsculas e minúsculas):
+
+```bash
+find / -type f -iname "server.env"
+```
+
 ### strace
 
 ```
