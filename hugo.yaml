@@ -14,6 +14,15 @@ markup:
   highlight:
     noClasses: false
 
+defaultContentLanguage: pt-br
+languages:
+  pt-br:
+    languageName: Portugues
+    weight: 1
+  en:
+    languageName: English
+    weight: 2
+
 menu:
   main:
     - name: Linux
