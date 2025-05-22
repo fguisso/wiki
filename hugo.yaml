@@ -28,6 +28,10 @@ menu:
     - name: Linux
       pageRef: /linux
       weight: 1
+    - name: Security
+      pageRef: /security
+      weight: 1
+ 
     - name: Blockchain 
       pageRef: /blockchain
       weight: 2
