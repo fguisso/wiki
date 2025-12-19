@@ -23,5 +23,6 @@ Aqui você encontra conteúdos rápidos e práticos. Se curtir algo mais detalha
   {{< card link="security" title="security" icon="terminal" >}}
   {{< card link="/linux/homelab" title="homelab" icon="home" >}}
   {{< card link="blockchain" title="blockchain" icon="key" >}}
+  {{< card link="cubo" title="cubo" icon="cube" >}}
   {{< card link="barraco" title="/co" icon="home" >}}
 {{< /cards >}}
