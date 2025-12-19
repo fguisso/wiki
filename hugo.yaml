@@ -35,6 +35,9 @@ menu:
     - name: Blockchain 
       pageRef: /blockchain
       weight: 2
+    - name: Musica
+      pageRef: /music
+      weight: 2
 
     - name: Contato ↗
       url: "https://guisso.dev"
