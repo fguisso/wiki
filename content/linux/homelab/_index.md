@@ -1,5 +1,5 @@
 ---
-title: Homelab 
+title: Homelab
 type: docs
 ---
 
@@ -9,14 +9,14 @@ De uma olhada no meu artigo para detalhes sobre os assuntos: [Proxmox & Homelab]
 
 - **Processador**: AMD Ryzen 5 5600H
 - **Memória**: 16GB RAM
-- **Armazenamento**: 
+- **Armazenamento**:
     - 500GB SSD
     - 500GB HDD
     - *Externo*: 1TB com case [**RAID1**](https://a.aliexpress.com/_mOk3SUj)
 
 Se você estiver interessado, pode encontrar esse mini PC no [AliExpress](https://pt.aliexpress.com/item/1005003443853901.html).
 
-- **Hypervisor**: Proxmox VE 8
+- **Hypervisor**: Proxmox VE 9
 - **Método de Deploy**: [helper-scripts.com](https://helper-scripts.com) para automatizar a criação de containers LXC e VMs.
 
 ![proxmox VE 8 screenshot](pve-2025-fev.png)
@@ -25,68 +25,48 @@ Se você estiver interessado, pode encontrar esse mini PC no [AliExpress](https:
 
 ### Gerenciamento e Rede
 - **[AdGuard Home](https://community-scripts.github.io/ProxmoxVE/scripts?id=adguard)**: Servidor DNS com bloqueio de anúncios e rastreadores.
-  - **Config atual**:
-    - vCPU: 1
-    - RAM: 512MB
-    - SWAP: 512MB
-    - HDD: 2GB
 
-- **[Nginx Proxy Manager](https://community-scripts.github.io/ProxmoxVE/scripts?id=nginxproxymanager)**: Gerenciamento de proxy reverso e [certificados SSL](/linux/commands/#openssl---gerar-certificado-autoassinado).
-  - **Config atual**:
-    - vCPU: 2
-    - RAM: 1GB
-    - SWAP: 512MB
-    - HDD: 4GB
+- **[Nginx Proxy Manager](https://community-scripts.github.io/ProxmoxVE/scripts?id=nginxproxymanager)**: Proxy reverso com SSL wildcard via DNS-01 Cloudflare.
+
+- **[Zitadel](https://community-scripts.github.io/ProxmoxVE/scripts?id=zitadel)**: Identity provider para SSO/OAuth2 interno.
+
+- **[Tianji](https://community-scripts.github.io/ProxmoxVE/scripts?id=tianji)**: Analytics e monitoramento. Similar ao Google Analytics + Uptime Kuma.
+
+- **[The Lounge](https://community-scripts.github.io/ProxmoxVE/scripts?id=thelounge)**: Cliente IRC web.
 
 ### Mídia e Downloads
 - **[Jellyfin](https://community-scripts.github.io/ProxmoxVE/scripts?id=jellyfin)**: Servidor de mídia para streaming de filmes, séries e músicas.
-  - **Config atual**:
-    - vCPU: 2
-    - RAM: 2GB
-    - SWAP: 512MB
-    - HDD: 12GB
 
-- **[qBittorrent](https://community-scripts.github.io/ProxmoxVE/scripts?id=qbittorrent)**: Cliente torrent para downloads.
-  - **Config atual**:
-    - vCPU: 2
-    - RAM: 2GB
-    - SWAP: 512MB
-    - HDD: 8GB
+- **[Transmission](https://community-scripts.github.io/ProxmoxVE/scripts?id=transmission)**: Cliente torrent.
 
-- **[PhotoPrism](https://community-scripts.github.io/ProxmoxVE/scripts?id=photoprism)**: Gerenciamento e organização de fotos com IA.
-  - **Config atual**:
-    - vCPU: 4
-    - RAM: 2GB
-    - SWAP: 1GB
-    - HDD: 100GB
+- **[Prowlarr](https://community-scripts.github.io/ProxmoxVE/scripts?id=prowlarr)**: Gerenciador de indexers para a stack arr.
 
-### Armazenamento e Documentos
-- **[Nextcloud](https://community-scripts.github.io/ProxmoxVE/scripts?id=nextcloudpi)**: Nuvem pessoal para arquivos, calendários e contatos.
-  - **Config atual**:
-    - vCPU: 2
-    - RAM: 2GB
-    - SWAP: 512MB
-    - HDD: 8GB
+- **[Radarr](https://community-scripts.github.io/ProxmoxVE/scripts?id=radarr)**: Automação de downloads de filmes.
 
-- **[Paperless-ngx](https://community-scripts.github.io/ProxmoxVE/scripts?id=paperless-ngx)**: Sistema de gerenciamento de documentos digitais.
-  - **Config atual**:
-    - vCPU: 2
-    - RAM: 2GB
-    - SWAP: 1GB
-    - HDD: 12GB
+- **[Sonarr](https://community-scripts.github.io/ProxmoxVE/scripts?id=sonarr)**: Automação de downloads de séries.
 
-### Máquinas Virtuais
-- **[Debian 12](https://community-scripts.github.io/ProxmoxVE/scripts?id=debian-vm)**: VM para estudos sobre empacotamento no Debian.
-  - **Config atual**:
-    - vCPU: 2
-    - RAM: 2GB
-    - HDD: 20GB
+- **[Bazarr](https://community-scripts.github.io/ProxmoxVE/scripts?id=bazarr)**: Download automático de legendas.
+
+- **[Jellyseerr](https://community-scripts.github.io/ProxmoxVE/scripts?id=jellyseerr)**: Portal de requisições de mídia integrado ao Jellyfin.
+
+- **[MeTube](https://community-scripts.github.io/ProxmoxVE/scripts?id=metube)**: Download de vídeos do YouTube e outras plataformas.
+
+- **[Lidarr](https://community-scripts.github.io/ProxmoxVE/scripts?id=lidarr)**: Automação de downloads de música.
+
+- **[Navidrome](https://community-scripts.github.io/ProxmoxVE/scripts?id=navidrome)**: Streaming de música pessoal compatível com Subsonic.
+
+### Documentos
+- **[Paperless-ngx](https://community-scripts.github.io/ProxmoxVE/scripts?id=paperless-ngx)**: Gerenciamento de documentos digitalizados.
 
 ## Acesso Externo
 
-- **VPN**: [**Tailscale**](https://tailscale.com/)
-- **Internet**: Pouco usado, quando preciso testar algo fora da VPN mas de forma externa: [**Cloudflare Tunnels**](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/)
-## Próximos Passos
+- **VPN**: [**Unifi Teleport**](https://help.ui.com/hc/en-us/articles/4409740063511)
+- **Internet**: [**Cloudflare Tunnels**](https://developers.cloudflare.com/cloudflare-one/connections/connect-networks/)
 
-- [ ] Implementar sistema de backup automatizado.
-- [ ] Wake on LAN.
+## Não usamos mais
+
+- **[qBittorrent](https://community-scripts.github.io/ProxmoxVE/scripts?id=qbittorrent)**: Substituído pelo Transmission.
+
+- **[Nextcloud](https://community-scripts.github.io/ProxmoxVE/scripts?id=nextcloudpi)**: Usado para fotos e arquivos. Desligado — o número de usuários (2) não justificou manter a complexidade. PhotoPrism cobria melhor o caso de fotos, e as demais features não foram relevantes no uso diário.
+
+- **[PhotoPrism](https://community-scripts.github.io/ProxmoxVE/scripts?id=photoprism)**: Gerenciamento de fotos com IA. Parado — funcionou bem localmente mas teve problemas com o web player de vídeo quando exposto externamente. Em busca de alternativa.
