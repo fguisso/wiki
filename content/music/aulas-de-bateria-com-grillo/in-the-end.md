@@ -7,9 +7,11 @@ weight: 9
 </br>
 <iframe style="border-radius:12px" src="https://open.spotify.com/embed/track/60a0Rd6pjrkxjPbaKzXjfq?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
 
+
 No começo tem um sino de condução, não é da música original, mas fica bem legal, começa no `3` do compasso anterior, legal ficar ouvindo bem para pegar o tempo certinho.
 
 E agora o compasso inicial da musica do Linkin Park:
+<iframe src="https://guisso.dev/groove/#/embed/g/A1AAAEQBBAYggggggggAgACAQQAEAIRAAAA" width="100%" height="380" frameborder="0" style="border:0" loading="lazy"></iframe>
 <iframe width="100%" height="240" src="https://guisso.dev/GrooveScribe/GrooveEmbed.html?TimeSig=4/4&amp;Div=16&amp;Tempo=80&amp;Measures=1&amp;H=|x-x-x-x-x-x-x-x-|&amp;S=|----O-------O---|&amp;K=|o--o------o-----|" frameborder="0" ></iframe>	
 Ja é a segunda aula que estamos tentando sair dessa primeira parte, é bem dificil separar as notas depois de já ter acostumado com alguns movimentos.
 
