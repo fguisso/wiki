@@ -13,3 +13,12 @@ The "gwiki" logo was supposed to be a variation of my name, but it ended up beco
 ## 🚀 **Explore, connect and enjoy!**
 Here you will find quick and practical content. If you like something more detailed, check out my blog, where you will find articles, lectures and other more specific stuff.
 
+## Explore
+
+{{< cards >}}
+  {{< card link="https://guisso.dev/en/" title="Blog" icon="user" >}}
+  {{< card link="linux" title="Linux" icon="terminal" >}}
+  {{< card link="linux/debian/proxmox" title="Proxmox" icon="terminal" >}}
+  {{< card link="linux/debian/proxmox/paperless-migration" title="Paperless-ngx Migration" icon="book-open" >}}
+  {{< card link="linux/homelab/unifi-content-filter-blocklist" title="UniFi Content Filter via API" icon="globe" >}}
+{{< /cards >}}
