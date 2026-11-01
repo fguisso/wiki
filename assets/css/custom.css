@@ -1,0 +1,13 @@
+iframe[src*="/groove/"] {
+  color-scheme: inherit;
+}
+
+/* GrooveScribe predates theme support and draws black notation on a light canvas. */
+iframe[src*="/GrooveScribe/GrooveEmbed.html"] {
+  color-scheme: light;
+  background-color: #fff;
+}
+
+.dark iframe[src*="/GrooveScribe/GrooveEmbed.html"] {
+  filter: invert(1) hue-rotate(180deg);
+}
