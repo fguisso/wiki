@@ -2,6 +2,8 @@
 title: Contra tempo no bumbo
 type: docs
 weight: 8
+aliases:
+  - /music/aulas-de-bateria-com-grillo/contra-tempo-bumbo/
 ---
 
 Foi passado um exercicio para treinar antes de começarmos a musica In the end do Linkin Park.

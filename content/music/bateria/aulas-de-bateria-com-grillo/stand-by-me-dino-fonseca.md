@@ -2,6 +2,8 @@
 title: Dino Fonseca - Stand By Me
 type: docs
 weight: 10
+aliases:
+  - /music/aulas-de-bateria-com-grillo/stand-by-me-dino-fonseca/
 ---
 
 ## Estudo em andamento: primeira parte

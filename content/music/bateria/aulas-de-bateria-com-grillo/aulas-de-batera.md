@@ -2,6 +2,8 @@
 title: Aulas de bateria
 type: docs
 weight: 1
+aliases:
+  - /music/aulas-de-bateria-com-grillo/aulas-de-batera/
 ---
 
 ## **Aulas de bateria com Grillo**

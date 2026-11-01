@@ -2,6 +2,8 @@
 title: Come as You Are Nirvana
 type: docs
 weight: 10
+aliases:
+  - /music/aulas-de-bateria-com-grillo/come-as-you-are-nirvana/
 ---
 
 </br>

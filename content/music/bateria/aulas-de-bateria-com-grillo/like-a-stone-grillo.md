@@ -2,6 +2,8 @@
 title: Like a Stone
 type: docs
 weight: 2
+aliases:
+  - /music/aulas-de-bateria-com-grillo/like-a-stone-grillo/
 ---
 
 Nesta aula foi apresentado melhor os tempos, antes eu estava contando no compasso até 4 e agora estou entendendo melhor o `e` de cada tempo.

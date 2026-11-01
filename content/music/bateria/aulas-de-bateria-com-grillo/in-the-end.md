@@ -2,6 +2,8 @@
 title: Linkin Park - In the End
 type: docs
 weight: 9
+aliases:
+  - /music/aulas-de-bateria-com-grillo/in-the-end/
 ---
 
 </br>

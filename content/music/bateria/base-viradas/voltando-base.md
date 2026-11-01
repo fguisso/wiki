@@ -2,6 +2,8 @@
 title: "Estudos de Bateria: Voltando ao Básico"
 type: docs
 weight: 1
+aliases:
+  - /music/base-viradas/voltando-base/
 ---
 
 Nos meus estudos recentes de bateria, decidi voltar ao básico para ajustar alguns pontos fundamentais que eu havia negligenciado no passado. Descobri que entender e internalizar conceitos simples, como os nomes das notas e a maneira correta de executar os tempos, faz uma diferença enorme no aprendizado. Vou compartilhar os principais aprendizados dessa etapa inicial.

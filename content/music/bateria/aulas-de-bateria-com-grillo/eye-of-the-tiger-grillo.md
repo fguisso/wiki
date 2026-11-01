@@ -2,6 +2,8 @@
 title: Eye of the Tiger
 type: docs
 weight: 3
+aliases:
+  - /music/aulas-de-bateria-com-grillo/eye-of-the-tiger-grillo/
 ---
 
 Para esta música aprendemos como segurar o prato de ataque para ele abafar o som logo, sendo assim o compasso inicial dessa música é feito duas vezes abafando todos os pratos de ataque, ai no ultimo ele é solto para soar mais tempo.
