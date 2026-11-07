@@ -7,6 +7,7 @@ weight: 20
 Aulas, músicas, exercícios e ferramentas para estudar bateria.
 
 - [Aulas de bateria com Grillo](/music/bateria/aulas-de-bateria-com-grillo/)
+- [Sweet Child O' Mine, Guns N' Roses: início em estudo](/music/bateria/sweet-child-o-mine-guns-n-roses/)
 - [Base + Viradas](/music/bateria/base-viradas/)
 - [Aquecimentos](/music/bateria/aquecimentos/)
 - [Exercícios básicos](/music/bateria/exercicios-basicos/)
