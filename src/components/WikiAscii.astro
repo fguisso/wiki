@@ -1,0 +1,41 @@
+---
+import { renderAsciiBackground, type AsciiBackgroundScene } from '../lib/ascii-background';
+
+interface Props {
+  scene: AsciiBackgroundScene;
+  home?: boolean;
+}
+
+const { scene, home = false } = Astro.props;
+const frame = await renderAsciiBackground(scene.shapes);
+---
+
+<pre class:list={['wiki-ascii', { 'wiki-ascii--home': home }]} data-tone={scene.tone} aria-hidden="true" set:text={frame} />
+
+<style>
+  .wiki-ascii {
+    margin: 0;
+    color: var(--secondary);
+    opacity: .66;
+    font: clamp(.34rem, 1vw, .54rem)/1.02 var(--mono);
+    letter-spacing: 0;
+    white-space: pre;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  .wiki-ascii[data-tone=green] { color: var(--accent); }
+
+  .wiki-ascii--home {
+    justify-self: end;
+    font-size: clamp(.43rem, 1.125vw, .73rem);
+  }
+
+  @media (max-width: 42rem) {
+    .wiki-ascii--home { justify-self: center; opacity: .53; }
+  }
+
+  @media print, (forced-colors: active) {
+    .wiki-ascii { display: none; }
+  }
+</style>

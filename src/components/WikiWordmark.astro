@@ -1,0 +1,28 @@
+---
+import { withBase } from '../utils/paths';
+
+interface Props { compact?: boolean }
+const { compact = false } = Astro.props;
+const asset = withBase('/gwiki.svg');
+---
+
+<span class:list={['wiki-wordmark', { 'wiki-wordmark--compact': compact }]}
+  style={{ '--wiki-mark': 'url("' + asset + '")' }} aria-hidden="true"></span>
+
+<style>
+  .wiki-wordmark {
+    display: block;
+    width: 64px;
+    height: 28px;
+    max-width: 100%;
+    color: light-dark(#5f5f5f, #9b9b9b);
+    background: currentColor;
+    mask: var(--wiki-mark) center / contain no-repeat;
+  }
+
+  .wiki-wordmark--compact { width: 41px; height: 18px; }
+
+  @media (forced-colors: active) {
+    .wiki-wordmark { forced-color-adjust: none; background: CanvasText; }
+  }
+</style>

@@ -1,0 +1,9 @@
+---
+import WikiPage from '../layouts/WikiPage.astro';
+import { getWiki, labels, type WikiPage as Page } from '../utils/wiki';
+
+const pages = await getWiki();
+const page: Page = { title: labels.pt.missing, lang: 'pt', slug: '404', section: false };
+---
+
+<WikiPage {page} {pages} missing />

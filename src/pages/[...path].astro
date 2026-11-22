@@ -1,0 +1,34 @@
+---
+import { render } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+import WikiPage from '../layouts/WikiPage.astro';
+import { getWiki, href, type WikiPage as Page } from '../utils/wiki';
+
+export const getStaticPaths = (async () => {
+  const pages = await getWiki();
+  const routes = new Map<string, { page: Page; redirect?: string }>();
+  for (const page of pages) {
+    const path = [page.lang === 'en' && 'en', page.slug].filter(Boolean).join('/');
+    routes.set(path, { page });
+  }
+  for (const page of pages) {
+    for (const alias of page.entry?.data.aliases ?? []) {
+      const path = alias.replace(/^\/+|\/+$/g, '');
+      const localized = page.lang === 'en' ? 'en/' + path : path;
+      if (!routes.has(localized)) routes.set(localized, { page, redirect: href(page.slug, page.lang) });
+    }
+  }
+  return [...routes].map(([path, props]) => ({
+    params: { path: path || undefined }, props: { ...props, pages },
+  }));
+}) satisfies GetStaticPaths;
+
+const { page, pages, redirect } = Astro.props;
+if (redirect) return Astro.redirect(redirect, 301);
+const markdown = page.entry ? await render(page.entry) : undefined;
+const Content = markdown?.Content;
+---
+
+<WikiPage {page} {pages} headings={markdown?.headings ?? []}>
+  {Content && <Content />}
+</WikiPage>

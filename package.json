@@ -1,0 +1,21 @@
+{
+  "name": "garden-wiki-astro",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "test:e2e": "playwright test",
+    "test:e2e:preview": "npm run build && playwright test"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.6.0",
+    "astro": "^5.15.4",
+    "sharp": "0.34.5"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.48.2"
+  }
+}

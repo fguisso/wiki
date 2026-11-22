@@ -1,0 +1,54 @@
+---
+import WikiIcon from './WikiIcon.astro';
+import { href, shortTitle, topicIcons, type WikiPage } from '../utils/wiki';
+
+interface Props {
+  items: WikiPage[];
+  catalog?: WikiPage[];
+  overview?: boolean;
+}
+
+const { items, catalog = [], overview = false } = Astro.props;
+---
+
+<ul class="directory-list">
+  {items.map((item) => {
+    const count = overview ? catalog.filter(({ slug }) => slug.startsWith(item.slug + '/')).length : 0;
+    const unit = item.lang === 'pt' ? (count === 1 ? 'nota' : 'notas') : (count === 1 ? 'note' : 'notes');
+    const icon = overview ? topicIcons[item.slug] : undefined;
+    return (
+      <li>
+        <a href={href(item.slug, item.lang)}>
+          <WikiIcon name={icon ?? (item.section ? 'folder' : 'file')} size={18} />
+          <div class="directory-label">
+            <span>{shortTitle(item)}</span>
+            {item.entry?.data.description && !overview && <small>{item.entry.data.description}</small>}
+          </div>
+          {count > 0 && <small class="directory-count">{count} {unit}</small>}
+          <WikiIcon name="arrow-right" size={15} />
+        </a>
+      </li>
+    );
+  })}
+</ul>
+
+<style>
+  .directory-list { margin: 0; padding: 0; list-style: none; }
+  li + li { border-block-start: 1px solid var(--line); }
+  a {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    padding: .68rem .45rem;
+    min-block-size: 47px;
+    color: var(--ink);
+    line-height: 1.4;
+    text-decoration: none;
+  }
+  a:hover { color: var(--accent); }
+  a > :global(svg) { flex: none; color: var(--muted); }
+  a:hover > :global(svg:last-child) { color: var(--accent); }
+  .directory-label { display: grid; gap: .22rem; flex: 1; min-inline-size: 0; overflow-wrap: anywhere; }
+  small { color: var(--muted-on-panel, var(--muted)); font-size: var(--text-supporting); }
+  .directory-count { font-size: var(--text-caption); white-space: nowrap; }
+</style>

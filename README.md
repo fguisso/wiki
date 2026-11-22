@@ -1,73 +1,19 @@
-# seguranca-para-desenvolvedores
-Livro de desenvolvimento seguro
+# Garden Wiki em Astro
 
+Notas, tutoriais e referências da [Garden Wiki](https://wiki.guisso.dev/), de Fernando Guisso.
 
-# Desenvolvimento seguro
+```sh
+npm ci
+npm run dev
+```
 
-Diferença entre desenvolvimento seguro e devsecops
-- oq é devops
-- oq é appsec
-- mindset de desenvolvimento seguro
-- sobre o curso, não tem certificação, não tem uma sequencia logica baseado no SDLC nem nada relacionado a complice e afim, apenas melhorar o pensamento logico na hora de desenvolver software.
+O conteúdo fica em `src/content/wiki/`. Use `_index.md` para criar a página de uma seção, `nome.md` para uma nota e o sufixo `.en.md` para traduções. As páginas marcadas com `draft: true` ficam fora do site. O campo `aliases` mantém URLs antigas, e `toc: false` oculta o sumário.
 
-# OWASP e suas ferramentas
+Imagens de uma nota podem ficar ao lado do Markdown. Imagens compartilhadas ficam em `public/images/`. Os atalhos da home ficam no campo `cards` dos dois arquivos de entrada.
 
-- OWASP
-- Top 10
-- Outra ferramentas interessantes
+```sh
+npm run build
+npm run test:e2e
+```
 
-# Alinhar conceitos
-- Introdução e Editor de texto favorito
-- Linguagens, utilize a sua favorita, mas aqui teremos exemplos em Golang, javascript e python.
-- Docker e Docker Compose
-- Conceitos da web
-
-# Conceitos da web
-- HTML
-- Protocolo HTTP
-- REST??
-- HTTP Headers
-- Status Code
-- http authentication
-- Server Side Rendering
-- o que é uma sessão
-- Como o navegador se comporta
-- Javascript e css
-- SPA
-
-# Introdução as atividades
-Fazer cada item do Top 10 nesta sequencia, primeiro criamos uma aplicação vulneravel, depois exploramos a vuln e depois reescrevemos a aplicação para ser a prova das explorações.
-
-# A1 - Injection
-- Desenvolvendo um gerenciador de crushs(Nome, Minibio, Cel)
-- Explorando SQL Injection no gerenciador(Descobrir os nomes e cel, baixar o banco)
-- Automatizando o ataque
-- Security Code Review (arruma o problema e depois testa com o ataque automatizado para ver se ainda esta vulneravel)
-
-- Desenvolvendo um bot que faz contas(bot do telegram que executa contas matematicas)
-- Explorando Command Injection no bot(eval, listando diretorios do servidor, pegando as variaveis de ambiente)
-- Automatizando o ataque
-- Security Code Review
-
-- Desenvolvendo uma API REST de filmes
-- Explorando NoSQL Injection(Baixar dados, drop no banco e deixar msg de resgate)
-- Automatizando o ataque
-- Security Code Review
-
-# A2 - Broken Authentication
-- Cookies e JWT
-- Desenvolvendo paginas restritas por login
-- Explorando Session Hijacking e Fixation(Token não expira apos o logout)
-- Explorando JWT Brute Force
-- Automatizando os ataques
-- Security Code Review
-
-# A3 - Sensiteve Data Exposure
-- Desenvolvendo um sitezinho estatico(servindo arquivos publicos e outros nem tão publicos)
-- Encontrando os arquivos nem tão ocultos assim
-- Security Code Review
-
-- Explorando o login(A1 e A3 ao mesmo tempo, sql injection e senha em plain text)
-- Security Code Review
-
-# 4 - XXE
+O Astro gera o site estático em `dist/`. Para servir em um subdiretório, use `SITE_URL=https://exemplo.com/wiki/ npm run build`. O conteúdo usa a licença CC BY-SA 4.0.

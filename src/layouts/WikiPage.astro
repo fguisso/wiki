@@ -1,0 +1,205 @@
+---
+import GlowBox from '../components/GlowBox.astro';
+import GlowButton from '../components/GlowButton.astro';
+import Header from '../components/Header.astro';
+import LogoWordmark from '../components/LogoWordmark.astro';
+import NavIcon from '../components/NavIcon.astro';
+import WikiAscii from '../components/WikiAscii.astro';
+import WikiDirectory from '../components/WikiDirectory.astro';
+import WikiDocumentTitle from '../components/WikiDocumentTitle.astro';
+import WikiIcon from '../components/WikiIcon.astro';
+import WikiSearch from '../components/WikiSearch.astro';
+import WikiSectionNav from '../components/WikiSectionNav.astro';
+import { asciiBackgroundScene } from '../lib/ascii-background';
+import { withBase } from '../utils/paths';
+import {
+  ancestorSlugs, childrenOf, href, labels, linksForMarkdown, parentSlug,
+  repository, shortTitle, type WikiPage,
+} from '../utils/wiki';
+import '../styles/global.css';
+import '../styles/reading.css';
+
+interface Props {
+  page: WikiPage;
+  pages: WikiPage[];
+  headings?: { depth: number; slug: string; text: string }[];
+  missing?: boolean;
+}
+
+const { page, pages, headings = [], missing = false } = Astro.props;
+const { slug, lang, entry, title } = page;
+const text = labels[lang];
+const home = !slug;
+const isDocument = !home && !missing;
+const scene = asciiBackgroundScene(title);
+const localPages = pages.filter((item) => item.lang === lang);
+const bySlug = new Map(localPages.map((item) => [item.slug, item]));
+const breadcrumbs = ancestorSlugs(slug).map((path) => bySlug.get(path));
+const children = childrenOf(pages, slug, lang);
+const topics = home ? children : childrenOf(pages, '', lang);
+const subsections = children.filter((item) => item.section);
+const notes = children.filter((item) => !item.section);
+const catalog = localPages.filter((item) => !item.section);
+const parent = bySlug.get(parentSlug(slug));
+const siblings = isDocument ? childrenOf(pages, parentSlug(slug), lang) : [];
+const index = siblings.findIndex((item) => item.slug === slug);
+const previous = index > 0 ? siblings[index - 1] : undefined;
+const next = index >= 0 ? siblings[index + 1] : undefined;
+const alternateLang = lang === 'pt' ? 'en' : 'pt';
+const alternate = pages.find((item) => item.slug === slug && item.lang === alternateLang);
+const alternatePath = href(alternate?.slug ?? '', alternateLang);
+const contents = entry?.data.toc !== false && isDocument ? headings.filter(({ depth }) => depth <= 3) : [];
+const canonical = new URL(href(slug, lang), Astro.site ?? Astro.url);
+const edit = entry && repository + '/edit/main/src/content/wiki/' + entry.id.split('/').map(encodeURIComponent).join('/');
+const shortcuts = (entry?.data.cards ?? []).filter(({ href: path }) =>
+  !children.some((item) => href(item.slug) === withBase(path))
+);
+const languageTag = lang === 'en' ? 'en' : 'pt-BR';
+const blog = lang === 'en' ? 'https://guisso.dev/en/' : 'https://guisso.dev/';
+const analytics = import.meta.env.PROD && Astro.site?.hostname === 'wiki.guisso.dev';
+---
+
+<!doctype html>
+<html lang={languageTag}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={entry?.data.description || text.read} />
+    <title>{home ? title : title + ' | Garden Wiki'}</title>
+    <link rel="icon" href={withBase('/gwiki.svg')} type="image/svg+xml" />
+    {!missing ? <link rel="canonical" href={canonical.href} /> : <meta name="robots" content="noindex" />}
+    {alternate && <link rel="alternate" hreflang={lang === 'en' ? 'pt-BR' : 'en'}
+      href={new URL(alternatePath, canonical).href} />}
+    <script is:inline>
+      try {
+        const theme = localStorage.getItem('gwiki-theme');
+        if (['escuro', 'claro', 'areia'].includes(theme)) document.documentElement.dataset.tema = theme;
+      } catch {}
+    </script>
+    {analytics && <script is:inline async defer src="https://tc.guisso.dev/tracker.js"
+      data-website-id="cmjep6rqu0bwk5c3duoaemy2d" data-domains="wiki.guisso.dev"></script>}
+  </head>
+  <body>
+    <a class="skip-link" href="#conteudo">{text.skip}</a>
+    <Header {lang} alternate={alternatePath} {slug} {topics} reading={isDocument && !page.section} />
+    <WikiSearch {lang} />
+
+    <div class="site-stage">
+      <div class:list={['wiki-shell', { 'wiki-shell--document': isDocument }]}>
+        <main class:list={['wiki-main', { 'wiki-main--home': home }]} id="conteudo" tabindex="-1">
+          {missing ? (
+            <header class="document-header">
+              <WikiDocumentTitle {title} {scene}>
+                <p class="document-lead"><a href={href('', lang)}>{text.goHome}</a></p>
+              </WikiDocumentTitle>
+            </header>
+          ) : home ? (
+            <>
+              <header class="home-intro">
+                <div>
+                  <h1>{title}</h1>
+                  <p>{text.read}</p>
+                  <GlowButton variant="outline" class="home-search" data-search-open aria-haspopup="dialog" hidden>
+                    <WikiIcon name="search" size={17} />
+                    {text.search}
+                    <kbd><span data-modifier>Ctrl</span> K</kbd>
+                  </GlowButton>
+                </div>
+                <WikiAscii {scene} home />
+              </header>
+              <div class="home-directory">
+                <GlowBox class="topic-card">
+                  <h2 id="explorar">{text.explore}</h2>
+                  <WikiDirectory items={children} {catalog} overview />
+                </GlowBox>
+                {shortcuts.length > 0 && (
+                  <GlowBox class="shortcut-card">
+                    <h2 id="acesso-rapido">{text.shortcuts}</h2>
+                    <ul class="quick-links">
+                      {shortcuts.map(({ href: path, title: name, icon }) => (
+                        <li><a href={linksForMarkdown(path, lang, pages)}>
+                          <WikiIcon name={icon} size={18} /> <span>{name}</span>
+                          <WikiIcon name={path.startsWith('https:') ? 'arrow-up-right' : 'arrow-right'} size={15} />
+                        </a></li>
+                      ))}
+                    </ul>
+                  </GlowBox>
+                )}
+              </div>
+              <section class="home-about prose" aria-labelledby="sobre-a-wiki">
+                <h2 id="sobre-a-wiki">{text.about}</h2>
+                <slot />
+              </section>
+            </>
+          ) : (
+            <article class="wiki-document">
+              <header class="document-header">
+                <nav class="breadcrumbs" aria-label={lang === 'en' ? 'Breadcrumb' : 'Caminho da página'}>
+                  <ol>
+                    {breadcrumbs.map((item, index) => item && (
+                      <li>{index > 0 && <WikiIcon name="chevron-right" size={13} />}
+                        <a href={href(item.slug, lang)}>{item.slug ? shortTitle(item) : 'Wiki'}</a></li>
+                    ))}
+                  </ol>
+                </nav>
+                <WikiDocumentTitle {title} {scene} description={entry?.data.description} />
+              </header>
+              <div class="article-tools">
+                {contents.length > 0 && (
+                  <aside class="article-index">
+                    <details class="toc-menu" data-article-toc>
+                      <summary>
+                        <NavIcon name="blog" />
+                        <span>{text.contents}</span>
+                        <NavIcon name="chevron-down" class="toc-chevron" />
+                      </summary>
+                      <nav aria-label={text.contents}>
+                        {contents.map(({ slug: id, depth, text: label }) => (
+                          <a class:list={[{ 'nested-heading': depth === 3 }]} href={'#' + id}>{label}</a>
+                        ))}
+                      </nav>
+                    </details>
+                  </aside>
+                )}
+                <WikiSectionNav current={page} {parent} {siblings} />
+              </div>
+              {entry?.body?.trim() && <div class="prose"><slot /></div>}
+              {children.length > 0 && (
+                <nav class="section-list" aria-label={text.list}>
+                  {subsections.length > 0 && (
+                    <GlowBox class="section-directory">
+                      <h2>{text.subsections}</h2>
+                      <WikiDirectory items={subsections} />
+                    </GlowBox>
+                  )}
+                  {notes.length > 0 && (
+                    <GlowBox class="section-directory">
+                      <h2>{text.notes}</h2>
+                      <WikiDirectory items={notes} />
+                    </GlowBox>
+                  )}
+                </nav>
+              )}
+              {edit && <a class="edit-page" href={edit}><WikiIcon name="github" size={16} /> {text.edit}</a>}
+              {(previous || next) && (
+                <nav class="page-neighbors" aria-label={lang === 'en' ? 'Related pages' : 'Páginas vizinhas'}>
+                  {previous && <a href={href(previous.slug, lang)} rel="prev">
+                    <WikiIcon name="arrow-left" size={17} /><span><small>{text.previous}</small>{shortTitle(previous)}</span>
+                  </a>}
+                  {next && <a href={href(next.slug, lang)} rel="next">
+                    <span><small>{text.next}</small>{shortTitle(next)}</span><WikiIcon name="arrow-right" size={17} />
+                  </a>}
+                </nav>
+              )}
+            </article>
+          )}
+          <footer class="wiki-footer">
+            <a href={blog} aria-label="Fernando Guisso"><LogoWordmark class="footer-wordmark" aria-hidden="true" /></a>
+            <a href="https://creativecommons.org/licenses/by-sa/4.0/" rel="license">CC BY-SA 4.0</a>
+          </footer>
+        </main>
+      </div>
+    </div>
+    <script src="../scripts/wiki.ts"></script>
+  </body>
+</html>
